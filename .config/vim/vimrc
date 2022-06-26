@@ -1,0 +1,87 @@
+" =========== PLUG ===========
+
+" auto install plug.vim
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs 
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" plug plugins
+call plug#begin('~/.vim/plugged/')
+
+" basics
+Plug 'tpope/vim-sensible'                " sensible defaults
+Plug 'crusoexia/vim-monokai'             " color scheme
+
+" languages
+Plug 'ziglang/zig.vim'                   " zig support
+
+" utility
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'                  " fzf support
+
+Plug 'editorconfig/editorconfig-vim'     " read settings for given project
+Plug 'tpope/vim-commentary'              " (un)comment shortcuts
+Plug 'preservim/tagbar'                  " better ctags
+
+call plug#end()
+
+" =========== LOOK ===========
+
+set background=dark
+colorscheme monokai            " change colorscheme
+hi SpecialKey ctermfg=237      " change color of spaces, tabs etc
+set list                       " show whitespace
+set listchars=tab:→\ ,space:·  " right arrow for tab, dot for space
+set number                     " line numbers
+set hlsearch                   " highlight  all matches
+set showcmd                    " show current command
+
+" highlight trailing whitespace with red
+hi TrailingWhitespace ctermfg=197
+match TrailingWhitespace /\s\+$/
+
+" =========== KEYS ===========
+
+let mapleader = " "            " map <leader> to space
+
+nnoremap <leader><leader> :write<CR>
+
+noremap <silent> <F5> :set list!<CR>
+
+inoremap jk <Esc>
+
+nnoremap H ^
+vnoremap H ^
+
+nnoremap L $
+vnoremap L $
+
+nnoremap j gj
+vnoremap j gj
+
+nnoremap k gk
+vnoremap k gk
+
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+
+" ====== TABS & SPACES =======
+" tabs to 4 spaces
+set breakindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" ========= TAGBAR ===========
+nmap <silent> <F8> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+
+" =========== FZF ============
+nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>fh :History<CR>
+nnoremap <silent> <leader>fl :Lines<CR>
