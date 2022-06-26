@@ -22,5 +22,12 @@ else
     export EDITOR=vi
 fi
 
+# shellcheck disable=SC1091
 [ -f "$HOME/.aliases" ] && . "$HOME/.aliases"
+# shellcheck disable=SC1091
 [ -f "$HOME/.exports" ] && . "$HOME/.exports"
+
+# mydots fetch --quiet
+# if ! mydots diff --quiet HEAD FETCH_HEAD; then
+#     echo "Update mydots! They are outdated!" >&2
+# fi
