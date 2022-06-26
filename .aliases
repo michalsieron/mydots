@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+alias mydots='git --git-dir=$HOME/mydots --work-tree=$HOME'
+
+# ask to overwrite
+alias mv="mv -i"
+alias cp="cp -i"
+
+# ls replacement
+LS_COMMAND="ls"
+
+if type lsd > /dev/null 2>&1; then
+  LS_COMMAND="lsd"
+fi
+
+# shellcheck disable=SC2139 # we do want to expand when defining
+alias ls="$LS_COMMAND"
+# shellcheck disable=SC2139 # we do want to expand when defining
+alias l="$LS_COMMAND"
+# shellcheck disable=SC2139 # we do want to expand when defining
+alias ll="$LS_COMMAND -l"
+# shellcheck disable=SC2139 # we do want to expand when defining
+alias la="$LS_COMMAND -lA"
+
+unset LS_COMMAND
+
+# git commands
+alias gs="git status --short --branch"
+alias gc="git commit"
+alias gl="git log --oneline --decorate --graph --all"
+alias gri="git rebase --interactive"
+
+# other
+alias j="just"
+alias venv=". .venv/bin/activate"
+alias zigup='zigup --path-link $HOME/.local/bin/zig'
+alias xclip="xclip -selection clipboard"

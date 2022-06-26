@@ -1,0 +1,66 @@
+[user]
+    email = michalwsieron@gmail.com
+    name = Michal Sieron
+
+[advice]
+    # don't show message about detached HEAD
+    detachedHead = false
+
+[core]
+    excludesFile = ~/.config/git/gitignore
+
+[init]
+    # name first branch in new repo 'main'
+    defaultBranch = main
+
+[commit]
+    # show diff in commit msg editor
+    verbose = true
+
+[diff]
+    # include submodules' commits in diff
+    submodule = log
+
+[fetch]
+    # only fetch submodules if parent repo updated them
+    recurseSubmodules = on-demand
+
+[help]
+    # show possible correction and ask to run it
+    autoCorrect = prompt
+
+[pull]
+    # rebase current branch on top of pulled one
+    rebase = true
+
+[push]
+    # when pushing, check if submodules are pushed
+    recurseSubmodules = check
+
+[submodule]
+    # make some commands recurse into submodules as well
+    recurse = true
+    # when creating branch, create one in submodules as well
+    propagateBranches = true
+
+[pager]
+    # use delta as pager
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+    blame = delta
+
+[interactive]
+    # command must retain lines one-to-one, so only color
+    diffFilter = delta --color-only
+
+[delta]
+    # show line numbers
+    line-numbers = true
+    # style commit header
+    commit-decoration-style = bold yellow box ul
+    # file path
+    file-style = bold yellow
+    # line below file path
+    file-decoration-style = bold yellow ul
