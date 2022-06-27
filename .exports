@@ -3,7 +3,3 @@ export FZF_DEFAULT_COMMAND="fd --type file --hidden"
 
 # mcfly
 export MCFLY_FUZZY=true
-
-# path
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.cargo/bin"
