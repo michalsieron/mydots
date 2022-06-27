@@ -1,0 +1,60 @@
+#!/usr/bin/env sh
+
+# creates new tmux window with following layout
+# +------------+-----------+
+# |            |           |
+# |  monitor   |    uart   |
+# |            |           |
+# +------------+-----------+
+# |                        |
+# |          logs          |
+# |                        |
+# +------------------------+
+# monitor and uart are being connected to with telent
+
+if [ -z "$TMUX" ]; then
+    echo "error: You have to run this command from a tmux session!" >&2
+    exit 1
+fi
+
+resc_path="$1"
+uart_name="$2"
+
+if [ -n "$resc_path" ] && [ -z "$uart_name" ]; then
+    uart_name="serial"
+fi
+
+# create renode window
+tmux new-window -n "Renode"
+tmux split-window -v
+tmux select-pane -t 0
+tmux split-window -h
+
+# start renode
+tmux select-pane -t 2
+tmux send-keys "renode --disable-xwt $resc_path" C-m
+
+# wait for it
+sleep 2
+
+# connect to the monitor
+tmux select-pane -t 0
+tmux send-keys "telnet localhost 1234" C-m
+
+# wait for it
+sleep 1
+
+if [ -n "$uart_name" ]; then
+    tmux send-keys "emulation CreateServerSocketTerminal 3456 \"term\"" C-m
+    tmux send-keys "connector Connect sysbus.$uart_name term" C-m
+
+    # wait for it
+    sleep 1
+
+    # connect to uart
+    tmux select-pane -t 1
+    tmux send-keys "telnet localhost 3456" C-m
+fi
+
+# select monitor pane
+tmux select-pane -t 0
