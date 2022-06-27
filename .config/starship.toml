@@ -74,6 +74,7 @@ symbol = " "
 
 [shlvl]
 symbol = " "
+disabled = false
 
 [swift]
 symbol = "ﯣ "
