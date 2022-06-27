@@ -1,0 +1,10 @@
+color = 10
+
+[qomu]
+tty = /dev/serial/by-id/usb-1d50_6141-if00
+color = 12
+
+[usb devices]
+pattern = usb([0-9]*)
+tty = /dev/ttyUSB%s
+color = 13
