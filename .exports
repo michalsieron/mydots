@@ -3,3 +3,6 @@ export FZF_DEFAULT_COMMAND="fd --type file --hidden"
 
 # mcfly
 export MCFLY_FUZZY=true
+
+# python
+export PYTHONUSERBASE="$HOME/.pip"
