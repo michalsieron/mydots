@@ -88,3 +88,7 @@ nnoremap <silent> <leader>ff :Files<CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
 nnoremap <silent> <leader>fh :History<CR>
 nnoremap <silent> <leader>fl :Lines<CR>
+
+" ===== PERSISTENT UNDO ======
+set undodir=~/.vim/undo/
+set undofile
