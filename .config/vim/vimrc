@@ -22,6 +22,8 @@ Plug 'ziglang/zig.vim'                   " zig support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'                  " fzf support
 
+Plug 'wellle/context.vim'                " context hints
+Plug 'google/vim-searchindex'            " show [x/y] search counter
 Plug 'dense-analysis/ale'                " Asynchronous Lint Engine
 Plug 'editorconfig/editorconfig-vim'     " read settings for given project
 Plug 'tpope/vim-commentary'              " (un)comment shortcuts
