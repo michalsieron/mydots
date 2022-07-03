@@ -25,6 +25,7 @@ On next shell launch, its config should be loaded.
 # Notable features
 
 - `mydots` alias for interacting with `mydots` repo
+- systemd user service auto-updating `mydots` repo every 5 minutes
 - `zigup` script for managing Zig compiler installations
 - `tmux-renode` script for launching [renode](https://renode.io) in tmux window
 

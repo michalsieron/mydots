@@ -2,7 +2,7 @@
 Description=mydots repo updater
 
 [Service]
-ExecStart=/usr/bin/git --git-dir %h/mydots --work-tree %h fetch
+ExecStart=/usr/bin/git --git-dir %h/mydots --work-tree %h pull --ff-only
 
 [Install]
 WantedBy=default.target
