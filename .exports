@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# less
+export LESSHISTFILE="$HOME/.less_history"
+
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type file --hidden"
 
