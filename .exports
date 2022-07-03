@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type file --hidden"
 
