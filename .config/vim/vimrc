@@ -89,6 +89,9 @@ nnoremap <silent> <leader>fb :Buffers<CR>
 nnoremap <silent> <leader>fh :History<CR>
 nnoremap <silent> <leader>fl :Lines<CR>
 
+" ========= CONTEXT ==========
+let g:context_add_mappings = 0
+
 " ===== PERSISTENT UNDO ======
 set undodir=~/.vim/undo/
 set undofile
