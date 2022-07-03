@@ -7,7 +7,7 @@
     detachedHead = false
 
 [core]
-    excludesFile = ~/.config/git/gitignore
+    excludesFile = ~/.config/git/ignore
 
 [init]
     # name first branch in new repo 'main'
