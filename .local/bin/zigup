@@ -1,0 +1,275 @@
+#!/usr/bin/env sh
+
+# zigup.sh - manage your Zig compiler installations
+# inspired by https://github.com/marler8997/zigup
+#
+# The MIT License (MIT)
+#
+# Copyright (c) 2022 Michał Sieroń
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+
+[ "$DEBUG" = "y" ] && set -x
+
+# set default values
+ZIGUP_HOST_TRIPLE="${ZIGUP_HOST_TRIPLE:-"$(uname -m)-linux"}"
+ZIGUP_DIR="${ZIGUP_DIR:-"$HOME/zig"}"
+ZIGUP_SYMLINK="${ZIGUP_SYMLINK:-"$HOME/.local/bin"}/zig"
+
+die() {
+    # print error and exit with 1
+    echo "$@" >&2
+    exit 1
+}
+
+verbose() {
+    # if verbose then print command. always execute
+    [ "$VERBOSE" = "y" ] && echo "$@" >&2
+    "$@"
+}
+
+check_version() {
+    # master or three numbers separated by dots with optional suffix for master builds
+    echo "$1" | grep -qP '^master|(\d+\.\d+\.\d+(-dev\.\d+\+[0-9a-f]{9})?)$' || die "Invalid version: $1!"
+}
+
+get_default_version() {
+    # read path to compiler binary
+    version="$(readlink "$ZIGUP_SYMLINK")"
+
+    # remove suffix to get only path to compiler installation
+    version="${version%%/files/zig}"
+
+    if [ "$version" = "$ZIGUP_DIR/master" ]; then
+        version="$(readlink "$ZIGUP_DIR/master")"
+    fi
+
+    # remove $ZIGUP_DIR prefix to get only version
+    version="${version##"$ZIGUP_DIR/"}"
+
+    echo "$version"
+}
+
+print_help() {
+    echo "zigup.sh - manage your Zig compiler installations"
+    echo "Usage: zigup CMD"
+    echo "  VERSION         - fetch + default shorthand"
+    echo "  fetch VERSION   - download VERSION"
+    echo "  default VERSION - set VERSION as default"
+    echo "  keep VERSION    - mark VERSION to keep"
+    echo "  unkeep VERSION  - unmark VERSION from keep"
+    echo "  clean           - remove versions not marked to keep"
+    echo "  run VERSION     - run command with zig VERSION"
+    echo "  list            - list installed versions"
+    echo "  fetch-index     - fetch and print index.json"
+}
+
+fetch_compiler() {
+    # check if triple is in form of "x-y"
+    if echo "$ZIGUP_HOST_TRIPLE" | grep -qE '^[^\-]+-[^\-]+$'; then
+        # transform from "x-y" to "y-x"
+        triple="$(echo "$ZIGUP_HOST_TRIPLE" | sed -E 's/([^\-]+)-([^\-]+)/\2-\1/')"
+    else
+        die "Invalid host triple format: $ZIGUP_HOST_TRIPLE!"
+    fi
+
+    # check version
+    version="$1"
+    check_version "$version" || exit 1
+
+    # prepare url and name variables
+    if [ "$version" = "master" ]; then
+        # if master, then we need newest url from the index
+        url="$(fetch_index | jq -r --arg tri "$ZIGUP_HOST_TRIPLE" '.master[$tri].tarball | select(. != null)')"
+
+        [ "$url" ] || die "No compiler available for $ZIGUP_HOST_TRIPLE!"
+        # remove prefix from url
+        name="${url##https://ziglang.org/builds/zig-"$triple"-}"
+        # remove file extension from already modified url
+        name="${name%%.tar.xz}"
+    else
+        url="https://ziglang.org/download/$version/zig-$triple-$version.tar.xz"
+        name="$version"
+    fi
+
+    if [ ! -d "$ZIGUP_DIR/$name" ]; then
+        echo "Downloading $version tarball"
+        mkdir -p "$ZIGUP_DIR"
+        # download version tarball
+        verbose curl -sf "$url" -o "$ZIGUP_DIR/$version.tar.xz" || die "Couldn't find version: $version!"
+        echo "Extracting to $ZIGUP_DIR/$name"
+        # create directory for the version
+        verbose mkdir -p "$ZIGUP_DIR/$name"
+        # extract files from the tarball
+        verbose tar xf "$ZIGUP_DIR/$version.tar.xz" -C "$ZIGUP_DIR/$name"
+        echo "Removing $version tarball"
+        # remove the tarball
+        verbose rm "$ZIGUP_DIR/$version.tar.xz"
+        echo "Renaming inner directory to files"
+        # rename directory to "files"
+        verbose mv "$ZIGUP_DIR/$name/zig-$triple-$name" "$ZIGUP_DIR/$name/files"
+    fi
+
+    # create symlink for master
+    if [ "$version" = "master" ]; then
+        echo "Creating symlink for master"
+        verbose ln -sfn "$ZIGUP_DIR/$name" "$ZIGUP_DIR/master"
+    fi
+}
+
+set_as_default() {
+    # check version
+    version="$1"
+    check_version "$version" || exit 1
+
+    [ -d "$ZIGUP_DIR/$version" ] || die "$version not installed!"
+
+    echo "Creating symlink for zig binary at $ZIGUP_SYMLINK"
+    verbose mkdir -p "$(dirname "$ZIGUP_SYMLINK")"
+    # setting as default means just creating symlink
+    verbose ln -sf "$ZIGUP_DIR/$version/files/zig" "$ZIGUP_SYMLINK"
+}
+
+mark_to_keep() {
+    # check version
+    version="$1"
+    check_version "$version" || exit 1
+
+    [ -d "$ZIGUP_DIR/$version" ] || die "$version not installed!"
+
+    echo "Marking $version to keep"
+    verbose touch "$ZIGUP_DIR/$version/keep"
+}
+
+unmark_from_keep() {
+    # check version
+    version="$1"
+    check_version "$version" || exit 1
+
+    [ -d "$ZIGUP_DIR/$version" ] || die "$version not installed!"
+
+    echo "Unmarking $version from keeping"
+    verbose rm -f "$ZIGUP_DIR/$version/keep"
+}
+
+clean_unmarked() {
+    if [ -h "$ZIGUP_DIR/master" ] && [ ! -e "$compiler/keep" ]; then
+        echo "Removing master symlink"
+        verbose rm "$ZIGUP_DIR/master"
+    fi
+
+    for compiler in "$ZIGUP_DIR/"*; do
+        # remove only unmarked dirs
+        if [ -d "$compiler" ] && [ ! -e "$compiler/keep" ]; then
+            echo "Removing ${compiler##"$ZIGUP_DIR/"}"
+            verbose rm -r "$compiler"
+        fi
+    done
+
+    # get default to know if we need to remove it
+    if [ -h "$ZIGUP_SYMLINK" ] && ! readlink -e "$ZIGUP_SYMLINK" > /dev/null; then
+        echo "Removind dead zig binary symlink"
+        verbose rm "$ZIGUP_SYMLINK"
+    fi
+}
+
+run_with() {
+    # check version
+    version="$1"
+    check_version "$version" || exit 1
+
+    [ -d "$ZIGUP_DIR/$version" ] || die "$version not installed!"
+
+    shift # remove version arg from args list
+    echo "Running: $ZIGUP_DIR/$version/files/zig" "$@"
+    verbose "$ZIGUP_DIR/$version/files/zig" "$@"
+}
+
+list_compilers() {
+    # get default to put star before it
+    default_version="$(get_default_version)"
+
+    printf "Default\tKeep\tVersion\n"
+
+    for compiler in "$ZIGUP_DIR/"*; do
+        version="$(basename "$compiler")"
+        # only dirs, no symlinks
+        if [ -d "$ZIGUP_DIR/$version" ] && [ ! -h "$ZIGUP_DIR/$version" ]; then
+            # mark default compiler
+            [ "$version" = "$default_version" ] && printf "*"
+            printf "\t"
+            [ -f "$compiler/keep" ] && printf "k"
+            printf "\t"
+            echo "$version"
+        fi
+    done
+}
+
+fetch_index() {
+    if ! verbose curl -sf "https://ziglang.org/download/index.json"; then
+        die "Couldn't fetch index!"
+    fi
+}
+
+main() {
+    case "$1" in
+        ""|-h|--help|help)
+            print_help
+        ;;
+        fetch)
+            fetch_compiler "$2"
+        ;;
+        default)
+            if [ "$2" ]; then
+                set_as_default "$2"
+            else
+                get_default_version
+            fi
+        ;;
+        keep)
+            mark_to_keep "$2"
+        ;;
+        unkeep)
+            unmark_from_keep "$2"
+        ;;
+        clean)
+            clean_unmarked
+        ;;
+        run)
+            shift # get rid of "run" arg
+            run_with "$@"
+        ;;
+        list)
+            list_compilers
+        ;;
+        fetch-index)
+            fetch_index
+        ;;
+        *)
+            if [ ! -d "$ZIGUP_DIR/$1" ] || [ "$1" = "master" ]; then
+                fetch_compiler "$1" && set_as_default "$1"
+            elif [ -d "$ZIGUP_DIR/$1" ]; then
+                set_as_default "$1"
+            fi
+        ;;
+    esac
+}
+
+main "$@"

@@ -33,5 +33,4 @@ alias gri="git rebase --interactive"
 # other
 alias j="just"
 alias venv=". .venv/bin/activate"
-alias zigup='zigup --path-link $HOME/.local/bin/zig'
 alias xclip="xclip -selection clipboard"
