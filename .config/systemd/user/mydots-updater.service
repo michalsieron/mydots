@@ -1,0 +1,8 @@
+[Unit]
+Description=mydots repo updater
+
+[Service]
+ExecStart=/usr/bin/git --git-dir %h/mydots --work-tree %h fetch
+
+[Install]
+WantedBy=default.target
