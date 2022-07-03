@@ -1,5 +1,13 @@
+# python stuff
 .venv
 __pycache__
 
+# zig stuff
 zig-bin
 zig-cache
+
+# generated ctags
+tags
+
+# history files
+.*_history
