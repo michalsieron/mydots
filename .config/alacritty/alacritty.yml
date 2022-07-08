@@ -1,5 +1,5 @@
 import:
-  - ~/.config/alacritty/base16-windows-nt.yml
+  - ~/.config/alacritty/xterm.yml
 
 window:
   decorations: full
