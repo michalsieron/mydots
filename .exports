@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# path
+export PATH="$HOME/.local/bin:$PATH"
+
 # less
 export LESSHISTFILE="$HOME/.less_history"
 
