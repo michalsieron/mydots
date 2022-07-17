@@ -42,6 +42,9 @@ set number                     " line numbers
 set hlsearch                   " highlight  all matches
 set showcmd                    " show current command
 
+set ignorecase                 " we need this for smartcase to work
+set smartcase                  " ignore case unless there is at least one uppercase
+
 " highlight trailing whitespace with red
 hi TrailingWhitespace ctermfg=197
 match TrailingWhitespace /\s\+$/
