@@ -12,38 +12,38 @@ endif
 call plug#begin('~/.vim/plugged/')
 
 " basics
-Plug 'tpope/vim-sensible'                " sensible defaults
-Plug 'crusoexia/vim-monokai'             " color scheme
+Plug 'tpope/vim-sensible'               " sensible defaults
+Plug 'crusoexia/vim-monokai'            " color scheme
 
 " languages
-Plug 'ziglang/zig.vim'                   " zig support
+Plug 'ziglang/zig.vim'                  " zig support
 
 " utility
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'                  " fzf support
+Plug 'junegunn/fzf.vim'                 " fzf support
 
-Plug 'wellle/context.vim'                " context hints
-Plug 'google/vim-searchindex'            " show [x/y] search counter
-Plug 'dense-analysis/ale'                " Asynchronous Lint Engine
-Plug 'editorconfig/editorconfig-vim'     " read settings for given project
-Plug 'tpope/vim-commentary'              " (un)comment shortcuts
-Plug 'preservim/tagbar'                  " better ctags
+Plug 'wellle/context.vim'               " context hints
+Plug 'google/vim-searchindex'           " show [x/y] search counter
+Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
+Plug 'editorconfig/editorconfig-vim'    " read settings for given project
+Plug 'tpope/vim-commentary'             " (un)comment shortcuts
+Plug 'preservim/tagbar'                 " better ctags
 
 call plug#end()
 
 " =========== LOOK ===========
 
 set background=dark
-colorscheme monokai            " change colorscheme
-hi SpecialKey ctermfg=237      " change color of spaces, tabs etc
-set list                       " show whitespace
-set listchars=tab:→\ ,space:·  " right arrow for tab, dot for space
-set number                     " line numbers
-set hlsearch                   " highlight  all matches
-set showcmd                    " show current command
+colorscheme monokai             " change colorscheme
+hi SpecialKey ctermfg=237       " change color of spaces, tabs etc
+set list                        " show whitespace
+set listchars=tab:→\ ,space:·   " right arrow for tab, dot for space
+set number                      " line numbers
+set hlsearch                    " highlight  all matches
+set showcmd                     " show current command
 
-set ignorecase                 " we need this for smartcase to work
-set smartcase                  " ignore case unless there is at least one uppercase
+set ignorecase                  " we need this for smartcase to work
+set smartcase                   " ignore case unless there is at least one uppercase
 
 " highlight trailing whitespace with red
 hi TrailingWhitespace ctermfg=197
@@ -51,7 +51,7 @@ match TrailingWhitespace /\s\+$/
 
 " =========== KEYS ===========
 
-let mapleader = " "            " map <leader> to space
+let mapleader = " "             " map <leader> to space
 
 nnoremap <leader><leader> :write<CR>
 
