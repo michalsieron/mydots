@@ -45,6 +45,8 @@ set showcmd                     " show current command
 set ignorecase                  " we need this for smartcase to work
 set smartcase                   " ignore case unless there is at least one uppercase
 
+set spell                       " add spell checking
+
 " highlight trailing whitespace with red
 hi TrailingWhitespace ctermfg=197
 match TrailingWhitespace /\s\+$/
