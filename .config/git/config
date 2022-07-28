@@ -6,6 +6,9 @@
     # don't show message about detached HEAD
     detachedHead = false
 
+[alias]
+    ladog = log --all --decorate --oneline --graph
+
 [core]
     excludesFile = ~/.config/git/ignore
 
