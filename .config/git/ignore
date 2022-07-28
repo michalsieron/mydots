@@ -11,3 +11,6 @@ tags
 
 # history files
 .*_history
+
+# vim swap files
+.*.sw[pon]
