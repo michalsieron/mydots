@@ -22,3 +22,7 @@ shell:
   args:
     - -c
     - tmux
+
+key_bindings:
+  - { key: Tab, mods: Control,       chars: "\x02n" } # ^B n
+  - { key: Tab, mods: Control|Shift, chars: "\x02p" } # ^B p
