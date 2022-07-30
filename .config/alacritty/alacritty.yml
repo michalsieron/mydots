@@ -24,5 +24,6 @@ shell:
     - tmux
 
 key_bindings:
+  - { key: S,   mods: Control|Alt,   chars: "\e[1~sudo \e[4~" } # HOME 'sudo ' END
   - { key: Tab, mods: Control,       chars: "\x02n" } # ^B n
   - { key: Tab, mods: Control|Shift, chars: "\x02p" } # ^B p
