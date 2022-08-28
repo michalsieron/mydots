@@ -39,4 +39,4 @@ For shells other than `/bin/sh`:
 
 Editor: `vi` or `vim`
 
-For `zigup.sh`: `curl`, `jq` and `grep` with support for `-P` flag
+For `zigup.sh`: `xz-utils`, `curl`, `jq` and `grep` with support for `-P` flag
