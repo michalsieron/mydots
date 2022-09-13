@@ -14,3 +14,7 @@ tags
 
 # vim swap files
 .*.sw[pon]
+
+# direnv stuff
+.envrc
+.direnv
