@@ -74,6 +74,7 @@ symbol = " "
 
 [shlvl]
 symbol = " "
+threshold = 1
 disabled = false
 
 [swift]
