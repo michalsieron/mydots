@@ -34,3 +34,4 @@ alias gri="git rebase --interactive"
 alias j="just"
 alias venv=". .venv/bin/activate"
 alias xclip="xclip -selection clipboard"
+alias lspath='echo "$PATH" | tr ":" "\n" | cat -n'
