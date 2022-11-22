@@ -1,5 +1,14 @@
 #!/usr/bin/env sh
 
+# colors
+if type vivid > /dev/null; then
+    LS_COLORS="$(vivid generate molokai)"
+else
+    LS_COLORS="$(cat "$HOME/.ls_colors")"
+fi
+
+export LS_COLORS
+
 # path
 export PATH="$HOME/.local/bin:$PATH"
 
