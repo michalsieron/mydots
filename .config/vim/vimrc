@@ -76,6 +76,8 @@ vnoremap k gk
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
+nnoremap <F1> <nop>
+
 " ====== TABS & SPACES =======
 " tabs to 4 spaces
 set breakindent
