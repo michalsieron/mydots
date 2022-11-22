@@ -34,6 +34,10 @@ alias gl="git log --oneline --decorate --graph --all"
 alias gri="git rebase --interactive"
 
 # other
+if type bat > /dev/null 2>&1; then
+    alias man="batman"
+fi
+
 alias j="just"
 alias venv=". .venv/bin/activate"
 alias xclip="xclip -selection clipboard"
