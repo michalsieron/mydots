@@ -11,6 +11,8 @@
 
 [core]
     excludesFile = ~/.config/git/ignore
+    # use delta as pager
+    pager = delta
 
 [init]
     # name first branch in new repo 'main'
@@ -45,14 +47,6 @@
     recurse = true
     # when creating branch, create one in submodules as well
     propagateBranches = true
-
-[pager]
-    # use delta as pager
-    diff = delta
-    log = delta
-    reflog = delta
-    show = delta
-    blame = delta
 
 [interactive]
     # command must retain lines one-to-one, so only color
