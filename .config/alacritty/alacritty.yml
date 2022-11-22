@@ -23,6 +23,9 @@ shell:
     - -c
     - tmux
 
+env:
+  TERM: xterm-256color
+
 key_bindings:
   - { key: S,   mods: Control|Alt,   chars: "\e[1~sudo \e[4~" } # HOME 'sudo ' END
   - { key: Tab, mods: Control,       chars: "\x02l" } # ^B l
