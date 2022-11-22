@@ -1,4 +1,4 @@
-format="$fill$line_break$all$line_break$character"
+format="$fill$line_break$all$time$line_break$character"
 add_newline = false
 
 [aws]
@@ -79,3 +79,6 @@ disabled = false
 
 [swift]
 symbol = "ﯣ "
+
+[time]
+disabled = false
