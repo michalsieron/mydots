@@ -6,11 +6,14 @@ alias mydots='git --git-dir=$HOME/mydots --work-tree=$HOME'
 alias mv="mv -i"
 alias cp="cp -i"
 
+# smart case in less
+alias less="less -i"
+
 # ls replacement
 LS_COMMAND="ls"
 
 if type lsd > /dev/null 2>&1; then
-  LS_COMMAND="lsd"
+    LS_COMMAND="lsd"
 fi
 
 # shellcheck disable=SC2139 # we do want to expand when defining
