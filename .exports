@@ -1,15 +1,7 @@
 #!/usr/bin/env sh
 
-# colors
-if type vivid > /dev/null; then
-    LS_COLORS="$(vivid generate molokai)"
-else
-    LS_COLORS="$(cat "$HOME/.ls_colors")"
-fi
-
-export LS_COLORS
-
 # path
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # less
@@ -20,6 +12,15 @@ export FZF_DEFAULT_COMMAND="fd --type file --hidden"
 
 # mcfly
 export MCFLY_FUZZY=true
+
+# colors
+if type vivid > /dev/null; then
+    LS_COLORS="$(vivid generate molokai)"
+else
+    LS_COLORS="$(cat "$HOME/.ls_colors")"
+fi
+
+export LS_COLORS
 
 # python
 export PYTHONUSERBASE="$HOME/.pip"

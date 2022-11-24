@@ -3,6 +3,11 @@
 # non-starship prompt
 PS1="\[\033[01;36m\]\w\[\033[01;32m\]\n\$\[\033[00m\] "
 
+# shellcheck disable=SC1091
+[ -f "$HOME/.exports" ] && . "$HOME/.exports"
+# shellcheck disable=SC1091
+[ -f "$HOME/.aliases" ] && . "$HOME/.aliases"
+
 if [ "$SHELL_NAME" ]; then
     do_init() {
         type "$1" > /dev/null && eval "$("$@")"
@@ -22,11 +27,6 @@ if type vim > /dev/null; then
 else
     export EDITOR=vi
 fi
-
-# shellcheck disable=SC1091
-[ -f "$HOME/.aliases" ] && . "$HOME/.aliases"
-# shellcheck disable=SC1091
-[ -f "$HOME/.exports" ] && . "$HOME/.exports"
 
 if ! mydots diff --quiet HEAD FETCH_HEAD; then
     echo "mydots local vs remote mismatch!" >&2
