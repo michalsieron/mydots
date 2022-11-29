@@ -38,6 +38,14 @@
     # rebase current branch on top of pulled one
     rebase = true
 
+[merge]
+    # first stash, then merge, then apply stash
+    autoStash = true
+
+[rebase]
+    # first stash, then rebase, then apply stash
+    autoStash = true
+
 [push]
     # when pushing, check if submodules are pushed
     recurseSubmodules = check
