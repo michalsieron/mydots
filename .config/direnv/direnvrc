@@ -1,0 +1,10 @@
+#!/bin/sh
+
+strict_env
+
+. "$HOME/.config/direnv/direnvrc.d/utils.sh"
+. "$HOME/.config/direnv/direnvrc.d/bin.sh"
+. "$HOME/.config/direnv/direnvrc.d/alias.sh"
+. "$HOME/.config/direnv/direnvrc.d/micromamba.sh"
+. "$HOME/.config/direnv/direnvrc.d/miniconda.sh"
+. "$HOME/.config/direnv/direnvrc.d/tinytex.sh"
