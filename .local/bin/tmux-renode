@@ -22,35 +22,31 @@ uart_name="$2"
 
 # create renode window
 tmux new-window -n "Renode"
-tmux split-window -v
-tmux select-pane -t 0
-tmux split-window -h
+tmux split-window -t Renode.0 -v
+tmux split-window -t Renode.0 -h
 
 # start renode
-tmux select-pane -t 2
-tmux send-keys "renode --disable-xwt $resc_path" C-m
+tmux send-keys -t Renode.2 "renode -P 41234 --disable-xwt $resc_path" C-m
 
 # wait for it
 sleep 2
 
 # connect to the monitor
-tmux select-pane -t 0
-tmux send-keys "telnet localhost 1234" C-m
+tmux send-keys -t Renode.0 "telnet localhost 41234" C-m
 
 # wait for it
 sleep 1
 
 if [ -n "$uart_name" ]; then
-    tmux send-keys "emulation CreateServerSocketTerminal 3456 \"term\"" C-m
-    tmux send-keys "connector Connect sysbus.$uart_name term" C-m
+    tmux send-keys -t Renode.0 "emulation CreateServerSocketTerminal 3456 \"term\"" C-m
+    tmux send-keys -t Renode.0 "connector Connect sysbus.$uart_name term" C-m
 
     # wait for it
     sleep 1
 
     # connect to uart
-    tmux select-pane -t 1
-    tmux send-keys "telnet localhost 3456" C-m
+    tmux send-keys -t Renode.1 "telnet localhost 3456" C-m
 fi
 
 # select monitor pane
-tmux select-pane -t 0
+tmux select-pane -t Renode.0
