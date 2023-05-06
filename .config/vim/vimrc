@@ -105,3 +105,8 @@ let g:ale_python_pylint_change_directory = 0
 " ===== PERSISTENT UNDO ======
 set undodir=~/.cache/vim/undo/
 set undofile
+
+set viminfofile=~/.vim/viminfo
+
+" when doing interactive rebase, run `git show --compact-summary <word>` after pressing `K`
+au BufRead */git-rebase-todo setlocal keywordprg=git\ show\ 
