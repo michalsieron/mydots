@@ -8,6 +8,7 @@
 
 [alias]
     ladog = log --all --decorate --oneline --graph
+    signoff = commit --amend --no-edit --signoff --reset-author
 
 [core]
     excludesFile = ~/.config/git/ignore
@@ -55,6 +56,10 @@
     recurse = true
     # when creating branch, create one in submodules as well
     propagateBranches = true
+
+[rerere]
+    # enable rerere, which should ease resolving conflicts
+    enabled = true
 
 [interactive]
     # command must retain lines one-to-one, so only color
