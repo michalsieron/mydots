@@ -10,7 +10,7 @@ alias cp="cp -i"
 alias less="less -i"
 
 # ls replacement
-LS_COMMAND="ls"
+LS_COMMAND="ls --color=auto"
 
 if type lsd > /dev/null 2>&1; then
     LS_COMMAND="lsd"
