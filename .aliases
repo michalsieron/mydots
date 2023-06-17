@@ -43,7 +43,7 @@ fi
 alias j="just"
 alias venv=". .venv/bin/activate"
 alias xclip="xclip -selection clipboard"
-alias lspath='echo "$PATH" | tr ":" "\n" | cat -n'
+alias lspath='echo "$PATH" | tr ":" "\n" | nl'
 alias ip="ip --color=auto"
 
 alias tmux_dump="tmux capture-pane -p -S -"
