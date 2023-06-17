@@ -55,8 +55,11 @@ let mapleader = " "             " map <leader> to space
 
 nnoremap <leader><leader> :write<CR>
 
-noremap <silent> <F5> :set list!<CR>
+nnoremap <F1> <Esc>
+inoremap <F1> <Esc>
+
 noremap <silent> <F2> :set spell!<CR>
+noremap <silent> <F5> :set list!<CR>
 
 inoremap jk <Esc>
 
@@ -74,8 +77,6 @@ vnoremap k gk
 
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
-
-nnoremap <F1> <nop>
 
 " ====== TABS & SPACES =======
 " tabs to 4 spaces
