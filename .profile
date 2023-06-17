@@ -10,7 +10,11 @@ PS1="\[\033[01;36m\]\w\[\033[01;32m\]\n\$\[\033[00m\] "
 
 if [ "$SHELL_NAME" ]; then
     do_init() {
-        type "$1" > /dev/null && eval "$("$@")"
+        if cmd-exists "$1"; then
+            eval "$("$@")"
+        else
+            echo "Couldn't init '$1'. Command doesn't exist!" >&2
+        fi
     }
 
     do_init mcfly init "$SHELL_NAME"
@@ -22,7 +26,7 @@ if [ "$SHELL_NAME" ]; then
     unset -f do_init
 fi
 
-if type vim > /dev/null; then
+if cmd-exists vim; then
     export EDITOR=vim
 else
     export EDITOR=vi

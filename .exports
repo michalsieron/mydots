@@ -25,7 +25,7 @@ export FZF_DEFAULT_COMMAND="fd --type file --hidden"
 export MCFLY_FUZZY=true
 
 # colors
-if type vivid > /dev/null; then
+if cmd-exists vivid; then
     LS_COLORS="$(vivid generate molokai)"
 else
     LS_COLORS="$(cat "$HOME/.ls_colors")"
