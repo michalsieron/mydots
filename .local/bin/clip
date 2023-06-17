@@ -1,0 +1,21 @@
+#!/usr/bin/sh
+
+if cmd-exists xsel; then
+    ICMD="xsel -i --clipboard"
+    OCMD="xsel -o --clipboard"
+elif cmd-exists xclip; then
+    ICMD="xclip -i -selection clipboard"
+    OCMD="xclip -o -selection clipboard"
+else
+    echo "No clipboard util found (xsel/xclip)" >&2
+fi
+
+# if stdin is closed, it meand we are either
+# being piped to or gettin redirected input
+if [ ! -t 0 ]; then
+    # read into the clipboard
+    $ICMD <&0
+else
+    # write out thec lipboard
+    $OCMD
+fi
