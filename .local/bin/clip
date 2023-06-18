@@ -10,12 +10,12 @@ else
     echo "No clipboard util found (xsel/xclip)" >&2
 fi
 
-# if stdin is closed, it meand we are either
-# being piped to or gettin redirected input
+# if stdin is closed, it means we are either
+# being piped to or getting redirected input
 if [ ! -t 0 ]; then
     # read into the clipboard
     $ICMD <&0
 else
-    # write out thec lipboard
+    # write out the clipboard
     $OCMD
 fi
