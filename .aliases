@@ -33,7 +33,7 @@ alias gc="git commit"
 alias gl="git log --oneline --decorate --graph --all"
 alias gri="git rebase --interactive"
 
-alias mydots-ui='gitui --polling -d "$HOME/mydots" -w "$HOME"'
+alias mydots-ui='gitui -d "$HOME/mydots" -w "$HOME"'
 
 # other
 if cmd-exists bat; then
