@@ -16,7 +16,6 @@ Plug 'tpope/vim-sensible'               " sensible defaults
 Plug 'crusoexia/vim-monokai'            " color scheme
 
 " languages
-Plug 'ziglang/zig.vim'                  " zig support
 
 " utility
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
