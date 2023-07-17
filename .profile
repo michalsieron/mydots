@@ -1,5 +1,8 @@
 #!/usr/bin/sh
 
+# use $HOME/.xprofile for this
+[ "$(basename -- "$0")" = "Xsession" ] && return
+
 # non-starship prompt
 PS1="\[\033[01;36m\]\w\[\033[01;32m\]\n\$\[\033[00m\] "
 
