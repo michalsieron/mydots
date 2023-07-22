@@ -65,6 +65,17 @@
     # command must retain lines one-to-one, so only color
     diffFilter = delta --color-only
 
+# parallel git
+[checkout]
+    # number of logical cores
+    workers = 0
+[fetch]
+    # a "reasonable default"
+    parallel = 0
+[submodule]
+    # a "reasonable default"
+    fetchJobs = 0
+
 [delta]
     # show line numbers
     line-numbers = true
