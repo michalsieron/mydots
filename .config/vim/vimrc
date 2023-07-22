@@ -33,7 +33,7 @@ call plug#end()
 " =========== LOOK ===========
 
 set background=dark
-colorscheme monokai             " change colorscheme
+silent! colorscheme monokai     " change colorscheme
 hi SpecialKey ctermfg=237       " change color of spaces, tabs etc
 set list                        " show whitespace
 set listchars=tab:→\ ,space:·   " right arrow for tab, dot for space
