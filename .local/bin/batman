@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
 
-man "$@" | bat --language man --plain
+if cmd-exists mandoc; then
+    man -Tascii -Owidth="$(tput cols)" "$@" | col -bx | bat --plain --language man
+else
+    man "$@" | bat --plain --language man
+fi
