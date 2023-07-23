@@ -6,9 +6,6 @@ alias mydots='git --git-dir=$HOME/mydots --work-tree=$HOME'
 alias mv="mv -i"
 alias cp="cp -i"
 
-# smart case in less, process escape sequences, quit if content fits in one screen
-alias less="less -iRFX"
-
 # ls replacement
 LS_COMMAND="ls --color=auto"
 

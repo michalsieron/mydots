@@ -16,6 +16,8 @@ prepend_PATH "$HOME/.local/bin"
 export PATH
 
 # less
+# smart case, process escape sequences, quit if content fits in one screen
+export LESS="-iRFX"
 export LESSHISTFILE="$HOME/.less_history"
 
 # fzf
