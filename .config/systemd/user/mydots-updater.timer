@@ -2,9 +2,8 @@
 Description=Run mydots updater periodically
 
 [Timer]
-Unit=mydots-updater.service
 OnStartupSec=30 seconds
-OnUnitActiveSec=15 minutes
+OnUnitInactiveSec=1 hour
 
 [Install]
-WantedBy=timer.target
+WantedBy=default.target
