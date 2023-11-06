@@ -24,7 +24,6 @@ if [ "$SHELL_NAME" ]; then
     do_init zoxide init "$SHELL_NAME"
     do_init starship init "$SHELL_NAME"
     do_init direnv hook "$SHELL_NAME"
-    do_init "$HOME/miniconda/bin/conda" "shell.$SHELL_NAME" hook
 
     unset -f do_init
 fi
