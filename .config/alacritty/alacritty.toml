@@ -1,0 +1,37 @@
+import = ["/home/michal/.config/alacritty/cursed.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10.0
+
+[[hints.enabled]]
+command = "xdg-open"
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B[1~sudo \u001B[4~" # HOME 'sudo ' END
+key = "S"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+chars = "\u0002l" # ^B l
+key = "Tab"
+mods = "Control"
+
+[shell]
+args = ["-c", "tmux"]
+program = "/usr/bin/bash"
+
+[window]
+decorations = "full"
