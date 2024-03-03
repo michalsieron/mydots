@@ -20,6 +20,7 @@ Plug 'crusoexia/vim-monokai'            " color scheme
 " utility
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'                 " fzf support
+Plug 'tpope/vim-fugitive'               " git integration
 
 Plug 'wellle/context.vim'               " context hints
 Plug 'google/vim-searchindex'           " show [x/y] search counter

@@ -30,7 +30,10 @@ alias gc="git commit"
 alias gl="git log --oneline --decorate --graph --all"
 alias gri="git rebase --interactive"
 
-alias mydots-ui='gitui -d "$HOME/mydots" -w "$HOME"'
+# alias mydots-ui='gitui -d "$HOME/mydots" -w "$HOME"'
+alias gitui='vim -c Git -c only'
+alias mydots-ui='env -C "$HOME" GIT_DIR="$HOME/mydots" GIT_WORK_TREE="$HOME" vim -c Git -c only'
+
 
 # other
 if cmd-exists bat; then
