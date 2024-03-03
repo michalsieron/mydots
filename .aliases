@@ -38,9 +38,12 @@ if cmd-exists bat; then
 fi
 
 alias j="just"
-alias venv=". .venv/bin/activate"
 alias xclip="xclip -selection clipboard"
 alias lspath='echo "$PATH" | tr ":" "\n" | nl'
 alias ip="ip --color=auto"
+
+# uv related
+alias pip="uv pip"
+alias venv="uv venv"
 
 alias tmux_dump="tmux capture-pane -p -S -"
