@@ -1,0 +1,37 @@
+#!/usr/bin/sh
+
+# Various adaptations made according to instructions from xdg-ninja
+
+# adb and other android
+export ANDROID_USER_HOME="${XDG_DATA_HOME}/android"
+alias adb='HOME="${XDG_DATA_HOME}/android" adb'
+
+# rust and cargo
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+
+# cuda
+export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
+
+# docker
+export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+
+# .NET and other C# stuff
+export DOTNET_CLI_HOME="${XDG_DATA_HOME}/dotnet"
+export NUGET_PACKAGES="${XDG_CACHE_HOME}/NuGetPackages"
+
+# gnupg
+export GNUPG_HOME="${XDG_DATA_HOME}/gnupg"
+
+# go
+export GOPATH="${XDG_DATA_HOME}/go"
+
+# libice
+export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
+
+# ncurses
+export TERMINFO="${XDG_DATA_HOME}/terminfo"
+export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
+
+# readline
+export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"

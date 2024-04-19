@@ -11,7 +11,7 @@ prepend_PATH() {
 }
 
 # path
-prepend_PATH "$HOME/.cargo/bin"
+prepend_PATH "${CARGO_HOME}/bin"
 prepend_PATH "$HOME/.local/bin"
 export PATH
 
