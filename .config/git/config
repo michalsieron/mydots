@@ -2,6 +2,14 @@
     email = michalwsieron@gmail.com
     name = Michal Sieron
 
+[sendemail]
+    confirm = always
+
+    smtpServer = smtp.gmail.com
+    smtpServerPort = 587
+    smtpEncryption = tls
+    smtpUser = michalwsieron@gmail.com
+
 [advice]
     # don't show message about detached HEAD
     detachedHead = false
