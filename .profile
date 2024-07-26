@@ -30,7 +30,7 @@ if [ "$SHELL_NAME" ]; then
         fi
     }
 
-    do_init mcfly init "$SHELL_NAME"
+    do_init fzf --"$SHELL_NAME"
     do_init zoxide init "$SHELL_NAME"
     do_init starship init "$SHELL_NAME"
     do_init direnv hook "$SHELL_NAME"
