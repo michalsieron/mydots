@@ -30,6 +30,10 @@ if [ "$SHELL_NAME" ]; then
         fi
     }
 
+    if cmd-exists fd; then
+        export FZF_CTRL_T_COMMAND="fd --hidden"
+        export FZF_ALT_C_COMMAND="fd --hidden --type directory"
+    fi
     do_init fzf --"$SHELL_NAME"
     do_init zoxide init "$SHELL_NAME"
     do_init starship init "$SHELL_NAME"
