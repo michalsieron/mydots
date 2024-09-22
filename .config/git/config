@@ -93,3 +93,9 @@
     file-style = bold yellow
     # line below file path
     file-decoration-style = bold yellow ul
+
+[url "https://github.com/"]
+    insteadOf = gh:
+
+[url "https://git.sr.ht/~"]
+    insteadOf = srht:
