@@ -11,7 +11,15 @@
 .local/share
 .local/state
 .mcfly
-.mozilla*
+.mozilla/*
+!.mozilla/firefox/
+.mozilla/firefox/*
+!.mozilla/firefox/custom.default/
+.mozilla/firefox/custom.default/*
+!.mozilla/firefox/custom.default/updater.sh
+!.mozilla/firefox/custom.default/prefsCleaner.sh
+!.mozilla/firefox/custom.default/user.js
+!.mozilla/firefox/custom.default/user-overrides.js
 .nv
 .pki
 .rustup
