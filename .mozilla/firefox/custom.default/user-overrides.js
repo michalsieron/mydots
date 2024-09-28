@@ -5,6 +5,7 @@
 
 user_pref("browser.startup.page", 3); // 0102
 user_pref("privacy.clearOnShutdown.history", false); // 2811
+user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false); // [FF128+] [DEFAULT: true]
 user_pref("privacy.resistFingerprinting.letterboxing", false); // 4504
 user_pref("signon.rememberSignons", false); // 5003
 user_pref("keyword.enabled", true); // 0801
