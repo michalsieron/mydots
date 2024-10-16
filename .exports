@@ -37,3 +37,4 @@ export LS_COLORS
 
 # python
 export PYTHONUSERBASE="$HOME/.pip"
+export PYTHONSTARTUP="$HOME/.config/python/pythonrc.py"
