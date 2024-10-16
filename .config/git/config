@@ -17,6 +17,7 @@
 [alias]
     ladog = log --all --decorate --oneline --graph
     touch = commit --amend --no-edit
+    si = submodule update --init
 
 [core]
     excludesFile = ~/.config/git/ignore
