@@ -16,7 +16,7 @@
 
 [alias]
     ladog = log --all --decorate --oneline --graph
-    signoff = commit --amend --no-edit --signoff --reset-author
+    touch = commit --amend --no-edit
 
 [core]
     excludesFile = ~/.config/git/ignore
