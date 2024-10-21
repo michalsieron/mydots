@@ -15,6 +15,8 @@
     detachedHead = false
 
 [alias]
+    align = !git submodule update --jobs $(nproc) $(git status --porcelain | awk '$1 == \"M\" {print $2}' | grep .)
+    ralign = !git align && git submodule foreach git ralign
     ladog = log --all --decorate --oneline --graph
     touch = commit --amend --no-edit
     si = submodule update --init
