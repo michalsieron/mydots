@@ -32,3 +32,6 @@ user_pref("browser.tabs.tabMinWidth", 100);
 
 // Dark theme for the PDF viewer
 user_pref("pdfjs.viewerCssTheme", 2);
+
+// Vertical tabs
+user_pref("sidebar.verticalTabs", true);
