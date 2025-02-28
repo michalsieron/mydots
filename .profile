@@ -35,9 +35,9 @@ if [ "$SHELL_NAME" ]; then
         export FZF_ALT_C_COMMAND="fd --hidden --type directory"
     fi
     do_init fzf --"$SHELL_NAME"
-    do_init zoxide init "$SHELL_NAME"
     do_init starship init "$SHELL_NAME"
     do_init direnv hook "$SHELL_NAME"
+    do_init zoxide init "$SHELL_NAME"
 
     unset -f do_init
 fi
