@@ -20,6 +20,8 @@ export PATH
 export LESS="-iRFX"
 export LESSHISTFILE="$HOME/.less_history"
 
+export PAGER="less"
+
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type file --hidden"
 
