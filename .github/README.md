@@ -32,7 +32,7 @@ On next shell launch, its config should be loaded.
 # Dependencies
 
 For shells other than `/bin/sh`:
-- [mcfly](https://github.com/cantino/mcfly) (you may need to create `.bash_history` file)
+- [fzf](https://github.com/junegunn/fzf)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [starship](https://github.com/starship/starship)
 - [miniconda](https://docs.conda.io/en/latest/miniconda.html)
