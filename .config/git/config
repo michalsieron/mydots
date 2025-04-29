@@ -88,6 +88,7 @@
     fetchJobs = 0
 
 [delta]
+    features = bold-clam
     # show line numbers
     line-numbers = true
     # style commit header
@@ -96,6 +97,18 @@
     file-style = bold yellow
     # line below file path
     file-decoration-style = bold yellow ul
+
+[delta "bold-clam"]
+    dark = true
+    minus-style = bold syntax "#5e0000"
+    minus-emph-style = bold syntax "#5e0000"
+    minus-non-emph-style = bold syntax
+    plus-style = bold syntax "#003500"
+    plus-emph-style = bold syntax "#003500"
+    plus-non-emph-style = bold syntax
+    zero-style = dim syntax
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
 
 [url "https://github.com/"]
     insteadOf = gh:
