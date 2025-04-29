@@ -37,6 +37,8 @@
 [diff]
     # include submodules' commits in diff
     submodule = log
+    # histogram can be sometimes too much
+    algorithm = patience
 
 [fetch]
     # only fetch submodules if parent repo updated them
